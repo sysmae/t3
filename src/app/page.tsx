@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { LatestPost } from "@/app/_components/post";
+import {BlogRouter} from '@/app/_components/blog'
 import { getServerAuthSession } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 
@@ -58,8 +59,9 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-
-          {session?.user && <LatestPost />}
+          
+          {/* {session?.user && <LatestPost />} */}
+          {session?.user && <BlogRouter/>}
         </div>
       </main>
     </HydrateClient>

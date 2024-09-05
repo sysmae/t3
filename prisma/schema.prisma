@@ -26,6 +26,20 @@ model Post {
     @@index([name])
 }
 
+model Blog {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String   
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdBy    User     @relation(fields: [createdById], references: [id])
+  createdById  String
+
+  @@index([title])
+}
+
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
@@ -63,6 +77,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    blogs         Blog[]   
 }
 
 model VerificationToken {
